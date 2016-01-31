@@ -98,3 +98,31 @@ wf <- subset(pf$www_likes, pf$gender == 'female')
 
 summary(wm)
 sum(wm)
+
+
+## by is the official response:
+by(pf$www_likes, pf$gender, sum)
+
+
+## box plot!
+qplot(x= gender, y = friendships_initiated, 
+      data = subset(pf, !is.na(gender)), 
+      geom = 'boxplot') + coord_cartesian(ylim = c(0, 500))
+
+by(pf$friendships_initiated, pf$gender, summary)
+
+
+### Getting logical:
+
+pf$mobile_check_in <- NA
+pf$mobile_check_in <- ifelse(pf$mobile_likes > 0, 1, 0)
+pf$mobile_check_in <- factor(pf$mobile_check_in)
+summary(pf$mobile_check_in)
+
+# precentage of users using mobile checkin:
+nrow(subset(pf, mobile_check_in == 1)) / nrow(pf)
+# or:
+sum(pf$mobile_check_in == 1) / length(pf$mobile_check_in)
+
+
+ 
