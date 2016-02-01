@@ -24,4 +24,19 @@
 # Copy and paste all of the code that you used for
 # your investigation, and submit it when you are ready.
 # ====================================================================================
+
+library(tidyr)
+library(dplyr)
+
 inflation <- read.csv('inflation.csv')
+
+infGathered <- gather(inflation, "Year", "n", 2:52)
+
+# cosmetic column name change:
+colnames(infGathered)[1] <- 'Country'
+
+poland <- subset(infGathered, Country == 'Poland')
+
+summary(poland)
+qplot(x = n, data = poland)
+
