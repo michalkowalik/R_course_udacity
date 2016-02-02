@@ -84,3 +84,13 @@ by(diamonds$price, diamonds$color, summary)
 # iqr for diamonds with color D: (best color)
 IQR(subset(diamonds, color=='D')$price)
 
+# investigate the weight of the diamonds (carat) using a frequency polygon.
+# use different bin widths to see how the requency polygon changes. What carat size has a count great than 2000?
+
+qplot(x = carat, 
+      data = diamonds,
+      xlab = 'carat',
+      binwidth= .05,
+      geom = 'freqpoly', color = carat) +
+  scale_x_continuous(lim = c(0, 2.5), breaks = seq(0, 2.5, .2)) 
+  
